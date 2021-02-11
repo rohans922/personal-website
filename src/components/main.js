@@ -37,11 +37,21 @@ class Main extends Component {
              <Route exact path="/" render={(props) => (
                                   <LandingPage {...props} scrollTo={this.props.scrollTo} scrollLoc={this.props.scrollLoc} selected={this.props.selected}/>
                                 )} />
-             <Route exact path="/film-and-media" component={FMS} />
-             <Route exact path="/about-me" component={AboutMe} />
-             <Route exact path="/software-engineering" component={Software} />
-             <Route exact path="/contact" component={Contact} />
-             <Route exact path="/about-this-site" component={AboutSite} />
+             <Route exact path="/film-and-media" render={(props) => (
+                                  <FMS {...props} scrollTo={this.props.scrollTo} scrollLoc={this.props.scrollLoc} selected={this.props.selected}/>
+                                )} />
+             <Route exact path="/about-me" render={(props) => (
+                                  <AboutMe {...props} scrollTo={this.props.scrollTo} scrollLoc={this.props.scrollLoc} selected={this.props.selected}/>
+                                )} />
+             <Route exact path="/software-engineering" render={(props) => (
+                                  <Software {...props} scrollTo={this.props.scrollTo} scrollLoc={this.props.scrollLoc} selected={this.props.selected}/>
+                                )} />
+             <Route exact path="/contact" render={(props) => (
+                                  <Contact {...props} scrollTo={this.props.scrollTo} scrollLoc={this.props.scrollLoc} selected={this.props.selected}/>
+                                )} />
+             <Route exact path="/about-this-site" render={(props) => (
+                                  <AboutSite {...props} scrollTo={this.props.scrollTo} scrollLoc={this.props.scrollLoc} selected={this.props.selected}/>
+                                )} />
            </Switch>
          </CSSTransition>
         </TransitionGroup>

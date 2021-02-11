@@ -85,7 +85,7 @@ class App extends React.Component {
       } else if (this.state.scrollLoc > 100 && this.state.scrollLoc <= 500) {
         this.setState({backgroundColor: "purple"})
       }
-      var id = document.querySelector('.rohan-sentence-2');
+      var id = document.querySelector('.lp.intro-sentence-2');
       if (id.getBoundingClientRect().bottom < 400) {
           this.setState({backgroundColor: "green"})
       }
@@ -134,12 +134,12 @@ class App extends React.Component {
               <TransitionGroup>
                 <CSSTransition key={this.state.boldText} timeout={1000} classNames="fade-in">
                 <div>
-                  <div className="mobile-heading">
+                  <div className="narrow-header">
                     {this.state.boldText}
                   </div>
                   <div className="home-button">
                     <Link className="home-button-link" to="/" onClick={() => {this.selected("Welcome");}}>
-                      <i class="fas fa-home"></i>
+                      <i className="fas fa-home"></i>
                     </Link>
                   </div>
                 </div>
@@ -183,7 +183,7 @@ class App extends React.Component {
             </Navigation>
           </Drawer>
             <TransitionGroup>
-              <CSSTransition key={this.state.backgroundColor} timeout={1000} classNames="background-fade">
+              <CSSTransition key={this.state.backgroundColor} timeout={1000} classNames="background-fade-in">
               <div className={classNames("background", this.state.backgroundColor)}>
               </div>
               </CSSTransition>
