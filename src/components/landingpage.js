@@ -4,12 +4,13 @@ import classNames from 'classnames'
 import { CSSTransition } from 'react-transition-group';
 import me from './../assets/me.png'
 import resume from './../assets/Rohan Shaiva Resume.pdf'
+import { useEffect } from "react";
 
 class Landing extends Component {
-
   constructor() {
       super();
     this.state = {
+      load: false,
       css_code: "lp",
       hideTop: false,
       showSentence1: false,
@@ -17,10 +18,13 @@ class Landing extends Component {
       dismiss: "",
       showBoxes: false
     };
+
+    this.update = this.update.bind(this);
   }
 
   componentWillUnmount() {
     var curr = window.location.pathname;
+    this.setState({load: false});
     switch(curr) {
       case "/":
         this.props.selected("Welcome")
@@ -45,62 +49,73 @@ class Landing extends Component {
     }
   }
 
+  componentDidMount() {
+    setTimeout(() => {
+      this.props.scrollTo(0);
+    }, 300);
+    setTimeout(() => {
+      this.update(0);
+    }, 350);
+    setTimeout(() => {
+      this.setState({load: true});
+    }, 600)
+  }
+
   componentDidUpdate(nextProps) {
     const { scrollLoc } = this.props
-    // console.log(nextProps.scrollLoc, " ", scrollLoc)
     if (nextProps.scrollLoc !== scrollLoc) {
-      var id = document.querySelector('.lp.intro-sentence-2');
-      console.log(id.getBoundingClientRect().bottom)
-      if (id.getBoundingClientRect().bottom < 90) {
-        this.setState({showSentence1: false})
-        this.setState({showSentence2: false})
-        this.setState({dismiss: "dismiss"})
-      } else if (id.getBoundingClientRect().bottom < 400) {
-        this.setState({showBoxes: true})
-      } else if (id.getBoundingClientRect().bottom >= 400) {
-        this.setState({showBoxes: false})
-      }
-      if (id.getBoundingClientRect().bottom > 300 && this.state.dismiss === "dismiss") {
-          this.setState({showBoxes: false});
-          setTimeout(() => {
-            this.props.scrollTo(0);
-          }, 300);
-          setTimeout(() => {
-              this.setState({hideTop: false})
-              this.setState({dismiss: ""})
-          }, 310);
-      }
-      // console.log(id.getBoundingClientRect().bottom);
-      // console.log(nextProps.scrollLoc)
-      if (nextProps.scrollLoc > 100) {
-        this.setState({hideTop: true})
-      } else if (nextProps.scrollLoc <= 100) {
-        this.setState({hideTop: false})
-        this.setState({dismiss: ""})
-      }
-      if (nextProps.scrollLoc < 100) {
-        this.setState({showSentence1: false})
-      } else if (nextProps.scrollLoc >= 100 && nextProps.scrollLoc < 500 && this.state.dismiss !== "dismiss") {
-        this.setState({showSentence1: true})
-      }
-      if (nextProps.scrollLoc < 300) {
-        this.setState({showSentence2: false})
-      } else if (nextProps.scrollLoc >= 300 && nextProps.scrollLoc < 500 && this.state.dismiss !== "dismiss") {
-        this.setState({showSentence2: true})
-      }
+      this.update(nextProps.scrollLoc)
     }
+  }
 
+  update(scrollLoc) {
+    var id = document.querySelector('.lp.intro-sentence-2');
+    // console.log(id.getBoundingClientRect().bottom)
+    if (id.getBoundingClientRect().bottom < 90) {
+      this.setState({showSentence1: false})
+      this.setState({showSentence2: false})
+      this.setState({dismiss: "dismiss"})
+    } else if (id.getBoundingClientRect().bottom < 400) {
+      this.setState({showBoxes: true})
+    } else if (id.getBoundingClientRect().bottom >= 400) {
+      this.setState({showBoxes: false})
+    }
+    if (id.getBoundingClientRect().bottom > 300 && this.state.dismiss === "dismiss") {
+        this.setState({showBoxes: false});
+        setTimeout(() => {
+          this.props.scrollTo(0);
+        }, 300);
+        setTimeout(() => {
+            this.setState({hideTop: false})
+            this.setState({dismiss: ""})
+        }, 310);
+    }
+    if (scrollLoc > 100) {
+      this.setState({hideTop: true})
+    } else if (scrollLoc <= 100) {
+      this.setState({hideTop: false})
+      this.setState({dismiss: ""})
+    }
+    if (scrollLoc < 100) {
+      this.setState({showSentence1: false})
+    } else if (scrollLoc >= 100 && scrollLoc < 500 && this.state.dismiss !== "dismiss") {
+      this.setState({showSentence1: true})
+    }
+    if (scrollLoc < 300) {
+      this.setState({showSentence2: false})
+    } else if (scrollLoc >= 300 && scrollLoc < 500 && this.state.dismiss !== "dismiss") {
+      this.setState({showSentence2: true})
+    }
   }
 
   render() {
     return(
       <div className="page">
       <CSSTransition
-        in={true}
-        appear={true}
-        timeout={1000}
+        in={this.state.load}
+        timeout={300}
         classNames={"fade-in"}>
-      <div>
+      <div className="page-content">
         <CSSTransition
           in={this.state.hideTop}
           timeout={800}

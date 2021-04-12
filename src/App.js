@@ -10,6 +10,7 @@ import resume from './assets/Rohan Shaiva Resume.pdf';
 class App extends React.Component {
   constructor() {
       super();
+    this.myRef = React.createRef();
     this.state = {
       boldText: " ",
       drawerVisible: "false",
@@ -19,6 +20,7 @@ class App extends React.Component {
       sidebarName: "Quick Links"
     };
     this.handleScroll = this.handleScroll.bind(this);
+    this.scrollToTop = this.scrollToTop.bind(this);
     this.scrollTo = this.scrollTo.bind(this);
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
@@ -68,6 +70,11 @@ class App extends React.Component {
     layoutID.MaterialLayout.toggleDrawer();
   }
 
+  scrollToTop() {
+    console.log(this.myRef)
+    this.myRef.current.scrollIntoView({behavior: 'smooth'})
+  }
+
   scrollTo(loc) {
     console.log("SCROLLING TO " + String(loc));
     var contentID = document.querySelector('.mdl-layout__content');
@@ -75,8 +82,9 @@ class App extends React.Component {
     this.setState({scrollLoc: contentID.scrollTop});
   }
 
+
   handleScroll() {
-    console.log(this.state.backgroundColor)
+    // console.log(this.state.backgroundColor)
     var contentID = document.querySelector('.mdl-layout__content')
     this.setState({scrollLoc: contentID.scrollTop});
     if (this.state.boldText == "Welcome") {
@@ -189,7 +197,8 @@ class App extends React.Component {
               </CSSTransition>
             </TransitionGroup>
           <Content onScroll={this.handleScroll} containerId={"content"}>
-            <Main scrollTo={this.scrollTo} scrollLoc={this.state.scrollLoc} selected={this.selected}/>
+            <div className="top" ref={this.myRef}/>
+            <Main scrollTo={this.scrollTo} scrollToTop={this.scrollToTop} scrollLoc={this.state.scrollLoc} selected={this.selected}/>
           </Content>
       </Layout>
       </div>
