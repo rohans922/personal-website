@@ -3042,6 +3042,7 @@ body, .page,  {
 }
 
 .se.projects-video-link.last {
+  width: 388px;
   border-left: 2px solid rgba(255, 255, 255, 0.4);
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 20px;

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames'
 import { CSSTransition } from 'react-transition-group';
-import me from './../assets/me.png'
+import me from './../assets/profile.png';
 import resume from './../assets/Rohan Shaiva Resume.pdf'
 import { useEffect } from "react";
 
