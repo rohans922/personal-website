@@ -49,7 +49,11 @@ class Software extends Component {
       skillDescription3: "",
       skillDescription4: "",
       videoPlayerRefs: [],
-      playing: new Array(10).fill(true)
+      playing: new Array(10).fill(true),
+      videoSliderIndex: ["0", "1", "2", "3"],
+      videoHideControls: ["", "o", "o", "o"],
+      grayLeft: "g",
+      grayRight: "w"
     };
 
     this.progLangRef = React.createRef();
@@ -57,9 +61,11 @@ class Software extends Component {
     this.toolsRef = React.createRef();
     this.librariesRef = React.createRef();
 
+    this.videoZeroRef = React.createRef();
     this.videoOneRef = React.createRef();
     this.videoTwoRef = React.createRef();
     this.videoThreeRef = React.createRef();
+    this.videoFourRef = React.createRef();
 
 
     this.update = this.update.bind(this);
@@ -69,6 +75,7 @@ class Software extends Component {
     this.scrollToSkill = this.scrollToSkill.bind(this);
     this.stopOtherVids = this.stopOtherVids.bind(this);
     this.setVidPlaying = this.setVidPlaying.bind(this);
+    this.moveVideo = this.moveVideo.bind(this);
   }
 
   componentWillUnmount() {
@@ -110,7 +117,7 @@ class Software extends Component {
       this.setState({load: true});
     }, 1200)
     this.selectSkill("Reset")
-    this.setState({videoPlayerRefs: [this.videoOneRef, this.videoTwoRef, this.videoThreeRef]})
+    this.setState({videoPlayerRefs: [this.videoZeroRef, this.videoOneRef, this.videoTwoRef, this.videoThreeRef, this.videoFourRef]})
   }
 
   componentDidUpdate(nextProps) {
@@ -456,6 +463,40 @@ class Software extends Component {
     this.setState({playing: playing});
   }
 
+  moveVideo(amount) {
+    console.log("state", this.state.videoSliderIndex);
+    console.log("amount is", amount)
+    let videoSliderIndex = this.state.videoSliderIndex.slice();
+    let firstElement = videoSliderIndex[0];
+    console.log("first", firstElement)
+    let lastElement = videoSliderIndex.[videoSliderIndex.length - 1];
+    console.log("last", lastElement)
+    if ((amount == 1 && parseInt(firstElement) < 0) || (amount == -1 && parseInt(lastElement) > 0)) {
+      videoSliderIndex = videoSliderIndex.map(x => (parseInt(x) + amount).toString())
+      this.setState({videoSliderIndex: videoSliderIndex})
+      let videoHideControls = this.state.videoHideControls.slice();
+      videoSliderIndex.forEach((item, i) => {
+        if (item != "0") {
+          videoHideControls[i] = "o";
+        } else {
+          videoHideControls[i] = "";
+        }
+      });
+      this.setState({videoHideControls: videoHideControls})
+
+      if (videoSliderIndex[0] == "0") {
+        this.setState({grayLeft: "g"})
+      } else {
+        this.setState({grayLeft: "w"})
+      }
+      if (videoSliderIndex[videoSliderIndex.length - 1] == "0") {
+        this.setState({grayRight: "g"})
+      } else {
+        this.setState({grayRight: "w"})
+      }
+    }
+  }
+
   render() {
     return(
       <div style={{width: '100%', margin: 'auto'}}>
@@ -495,7 +536,7 @@ class Software extends Component {
                       </ul>
                     </div>
                     <div>
-                      <ReactPlayer ref={this.videoOneRef} playing={this.state.playing[0]} onStart={() => {this.stopOtherVids(0)}} onPlay={() => {this.setVidPlaying(0, true)}} className={classNames(this.state.css_code, "projects-video")} url={'videos/seize-the-seas-gameplay.mp4'} width="780" light={seizeThumb} controls={true}/>
+                      <ReactPlayer ref={this.videoZeroRef} playing={this.state.playing[0]} onStart={() => {this.stopOtherVids(0)}} onPlay={() => {this.setVidPlaying(0, true)}} className={classNames(this.state.css_code, "projects-video")} url={'videos/seize-the-seas-gameplay.mp4'} width="780" light={seizeThumb} controls={true}/>
                     </div>
                     <div onMouseLeave={() => {this.setState({downloadHover: ""})}} className={classNames(this.state.css_code, "projects-video-links")}>
                       <a onClick={() => this.setVidPlaying(0, false)} href="https://github.com/rohans922/seize-the-seas" rel="noopener noreferrer" target="_blank" onMouseEnter={() => {this.setState({downloadHover: ""})}} className={classNames(this.state.css_code, "projects-video-link")}>
@@ -511,6 +552,86 @@ class Software extends Component {
                         <a onClick={() => this.setVidPlaying(0, false)} href="https://drive.google.com/file/d/1eOktYFoGQd_UxnJNtd1bIY7p0279TIm0/view" rel="noopener noreferrer" target="_blank" className={classNames(this.state.css_code, "projects-download-link", "last")}>
                           Mac
                         </a>
+                      </div>
+                    </div>
+                  </div>
+                </CSSTransition>
+                <CSSTransition in={this.state.showProjects} timeout={800} classNames={"fade-in"}>
+                  <div className={classNames(this.state.css_code, "projects-content")}>
+                    <div className={classNames(this.state.css_code, "projects-title-box")}>
+                      <div className={classNames(this.state.css_code, "projects-title-box-top")}>
+                        <div className={classNames(this.state.css_code, "projects-title-content")}>
+                          <h1>Simulators and GUIs in Java, JavaScript, and C++</h1>
+                        </div>
+                      </div>
+                      <div className={classNames(this.state.css_code, "projects-title-box-bottom")}>
+                        <div className={classNames(this.state.css_code, "projects-title-content")}>
+                          <h1>To practice principles of object-oriented programming, modularity, and GUI design, I've developed the following simulators and games. Use the arrows to switch between projects.</h1>
+                        </div>
+                      </div>
+                    </div>
+                    <div className={classNames(this.state.css_code, "projects-info")}>
+                      <ul>
+                        <li>
+                          {this.state.projectsBullet1}
+                        </li>
+                        <li>
+                          {this.state.projectsBullet2}
+                        </li>
+                      </ul>
+                    </div>
+                    <div className={classNames(this.state.css_code, "projects-videos-slider")}>
+                      <div className={classNames(this.state.css_code, "projects-video-slider-arrows")}>
+                        <div className={classNames(this.state.css_code, "projects-video-slider-arrow", "l", this.state.grayLeft)} onClick={() => {this.moveVideo(1); this.stopOtherVids(-1);}}>
+                          <i className="fas fa-chevron-left" aria-hidden="true" />
+                        </div>
+                        <div className={classNames(this.state.css_code, "projects-video-slider-arrow", "r", this.state.grayRight)} onClick={() => {this.moveVideo(-1); this.stopOtherVids(-1);}}>
+                          <i className="fas fa-chevron-right" aria-hidden="true" />
+                        </div>
+                      </div>
+                      <div className={classNames(this.state.css_code, "projects-video-container", this.state.videoSliderIndex[0])}>
+                        <div>
+                          <div className={classNames(this.state.css_code, "projects-video-overlay", this.state.videoHideControls[0])}/>
+                          <ReactPlayer ref={this.videoOneRef} playing={this.state.playing[1]} onStart={() => {this.stopOtherVids(1)}} onPlay={() => {this.setVidPlaying(1, true)}} className={classNames(this.state.css_code, "projects-video")} url={'videos/seize-the-seas-gameplay.mp4'} width="780" light={seizeThumb} controls={true}/>
+                        </div>
+                        <div className={classNames(this.state.css_code, "projects-video-links")}>
+                          <a onClick={() => this.setVidPlaying(1, false)} href="https://github.com/rohans922/seize-the-seas" rel="noopener noreferrer" target="_blank" className={classNames(this.state.css_code, "projects-video-link", "wide")}>
+                            GitHub
+                          </a>
+                        </div>
+                      </div>
+                      <div className={classNames(this.state.css_code, "projects-video-container", this.state.videoSliderIndex[1])}>
+                        <div>
+                          <div className={classNames(this.state.css_code, "projects-video-overlay", this.state.videoHideControls[1])}/>
+                          <ReactPlayer ref={this.videoTwoRef} playing={this.state.playing[2]} onStart={() => {this.stopOtherVids(2)}} onPlay={() => {this.setVidPlaying(2, true)}} className={classNames(this.state.css_code, "projects-video")} url={'videos/seize-the-seas-gameplay.mp4'} width="780" light={seizeThumb} controls={true}/>
+                        </div>
+                        <div className={classNames(this.state.css_code, "projects-video-links")}>
+                          <a onClick={() => this.setVidPlaying(2, false)} href="https://github.com/rohans922/seize-the-seas" rel="noopener noreferrer" target="_blank" className={classNames(this.state.css_code, "projects-video-link", "wide")}>
+                            GitHub
+                          </a>
+                        </div>
+                      </div>
+                      <div className={classNames(this.state.css_code, "projects-video-container", this.state.videoSliderIndex[2])}>
+                        <div>
+                          <div className={classNames(this.state.css_code, "projects-video-overlay", this.state.videoHideControls[2])}/>
+                          <ReactPlayer ref={this.videoThreeRef} playing={this.state.playing[3]} onStart={() => {this.stopOtherVids(3)}} onPlay={() => {this.setVidPlaying(3, true)}} className={classNames(this.state.css_code, "projects-video")} url={'videos/seize-the-seas-gameplay.mp4'} width="780" light={seizeThumb} controls={true}/>
+                        </div>
+                        <div className={classNames(this.state.css_code, "projects-video-links")}>
+                          <a onClick={() => this.setVidPlaying(3, false)} href="https://github.com/rohans922/seize-the-seas" rel="noopener noreferrer" target="_blank" className={classNames(this.state.css_code, "projects-video-link", "wide")}>
+                            GitHub
+                          </a>
+                        </div>
+                      </div>
+                      <div className={classNames(this.state.css_code, "projects-video-container", this.state.videoSliderIndex[3])}>
+                        <div>
+                          <div className={classNames(this.state.css_code, "projects-video-overlay", this.state.videoHideControls[3])}/>
+                          <ReactPlayer ref={this.videoFourRef} playing={this.state.playing[4]} onStart={() => {this.stopOtherVids(4)}} onPlay={() => {this.setVidPlaying(4, true)}} className={classNames(this.state.css_code, "projects-video")} url={'videos/seize-the-seas-gameplay.mp4'} width="780" light={seizeThumb} controls={true}/>
+                        </div>
+                        <div className={classNames(this.state.css_code, "projects-video-links")}>
+                          <a onClick={() => this.setVidPlaying(4, false)} href="https://github.com/rohans922/seize-the-seas" rel="noopener noreferrer" target="_blank" className={classNames(this.state.css_code, "projects-video-link", "wide")}>
+                            GitHub
+                          </a>
+                        </div>
                       </div>
                     </div>
                   </div>

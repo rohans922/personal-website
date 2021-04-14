@@ -1,4 +1,6 @@
-import './App.css';
+import './stylesheets/App.css';
+import './stylesheets/landingpage.css';
+import './stylesheets/software.css';
 import React from 'react';
 import { Header, Layout, Navigation, Drawer, Content } from 'react-mdl';
 import { Link } from 'react-router-dom';
