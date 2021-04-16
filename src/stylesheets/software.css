@@ -655,6 +655,18 @@
   top: 9890px;
 }
 
+.se.section-marker.tech-concepts {
+  top: 340px;
+}
+
+.se.section-marker.tools-apps {
+  top: 640px;
+}
+
+.se.section-marker.libraries {
+  top: 940px;
+}
+
 .se.navigation {
   z-index: 5;
   transform: scale(0.8);
@@ -1736,27 +1748,20 @@
 
 .se.projects-video-container.-\32 {
   opacity: 0.5;
+  filter: blur(2px);
   transform: translate(-1640px) scale(0.85);
-}
-
-.se.projects-video-container.-\33 {
-  opacity: 0.5;
-  transform: translate(-2460px) scale(0.85);
 }
 
 .se.projects-video-container.\31 {
   opacity: 0.5;
+  filter: blur(2px);
   transform: translate(820px) scale(0.85);
 }
 
 .se.projects-video-container.\32 {
   opacity: 0.5;
+  filter: blur(2px);
   transform: translate(1640px) scale(0.85);
-}
-
-.se.projects-video-container.\33 {
-  opacity: 0.5;
-  transform: translate(2460px) scale(0.85);
 }
 
 .se.projects-video-slider-arrows {

@@ -18,6 +18,9 @@ function Skills(props) {
         </CSSTransition>
         <CSSTransition in={props.state.skillsSection >= 1} timeout={1000} classNames={"fade-in"}>
           <div className={classNames(props.state.css_code, "skills-first-section")}>
+            <div ref={props.techConceptsRef} className={classNames(props.state.css_code, "section-marker", "tech-concepts")}/>
+            <div ref={props.toolsRef} className={classNames(props.state.css_code, "section-marker", "tools-apps")}/>
+            <div ref={props.librariesRef} className={classNames(props.state.css_code, "section-marker", "libraries")}/>
             <div className={classNames(props.state.css_code, "skills-heading")}>
               <hr className={classNames(props.state.css_code, "skills-heading-top-line")}/>
               <h1 className={classNames(props.state.css_code, "skills-heading-title")}>PROGRAMMING LANGUAGES</h1>
@@ -42,7 +45,7 @@ function Skills(props) {
                 </div>
               </div>
               <div className={classNames(props.state.css_code, "skills-row")}>
-                <div ref={props.techConceptsRef} onMouseEnter={() => {props.selectSkill("HTML")}} className={classNames(props.state.css_code, "skills-box", "first", props.state.hover[5])}>
+                <div onMouseEnter={() => {props.selectSkill("HTML")}} className={classNames(props.state.css_code, "skills-box", "first", props.state.hover[5])}>
                   HTML
                 </div>
                 <div onMouseEnter={() => {props.selectSkill("CSS")}} className={classNames(props.state.css_code, "skills-box", props.state.hover[6])}>
@@ -87,7 +90,7 @@ function Skills(props) {
             </div>
             <div className={classNames(props.state.css_code, "skills-box-2")} onMouseLeave={() => {props.selectSkill("leave2")}}>
               <div className={classNames(props.state.css_code, "skills-row")}>
-                <div ref={props.toolsRef} onMouseEnter={() => {props.selectSkill("GUI")}} className={classNames(props.state.css_code, "skills-box", "first", "top-row", props.state.hover[14])}>
+                <div onMouseEnter={() => {props.selectSkill("GUI")}} className={classNames(props.state.css_code, "skills-box", "first", "top-row", props.state.hover[14])}>
                   GUI/UI/UX Design
                 </div>
                 <div onMouseEnter={() => {props.selectSkill("Algorithms")}} className={classNames(props.state.css_code, "skills-box", "top-row", props.state.hover[15])}>
@@ -117,7 +120,7 @@ function Skills(props) {
             </div>
             <div className={classNames(props.state.css_code, "skills-box-3")} onMouseLeave={() => {props.selectSkill("leave3")}}>
               <div className={classNames(props.state.css_code, "skills-row")}>
-                <div ref={props.librariesRef} onMouseEnter={() => {props.selectSkill("Unity")}} className={classNames(props.state.css_code, "skills-box", "first", "top-row", props.state.hover[18])}>
+                <div onMouseEnter={() => {props.selectSkill("Unity")}} className={classNames(props.state.css_code, "skills-box", "first", "top-row", props.state.hover[18])}>
                   Unity
                 </div>
                 <div onMouseEnter={() => {props.selectSkill("Tableau")}} className={classNames(props.state.css_code, "skills-box", "top-row", props.state.hover[19])}>
