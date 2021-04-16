@@ -37,7 +37,7 @@ class AboutSite extends Component {
             appear={true}
             timeout={1000}
             classNames={"fade-in"}>
-              <h1>About This Site</h1>
+              <h1 className="under-construction"><b>This page is currently under construction.</b><br/>Come back soon!</h1>
           </CSSTransition>
         </div>
       </div>

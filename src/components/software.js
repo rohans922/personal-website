@@ -1,14 +1,15 @@
 import React, { Component} from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { Link } from 'react-router-dom';
 import classNames from 'classnames'
 import Intro from './software/intro';
 import Experience from './software/experience';
 import Navigation from './software/navigation';
 import Courses from './software/courses';
 import Skills from './software/skills';
+import Projects from './software/projects';
 import selectSkill from './software/skills';
-import ReactPlayer from 'react-player';
-import seizeThumb from './../assets/images/seize-thumb.png'
+
 
 class Software extends Component {
   constructor() {
@@ -16,17 +17,15 @@ class Software extends Component {
     this.state = {
       load: false,
       css_code: "se",
-      prevSection: "-1",
+      navigationHover: ["", "", "", "", ""],
       section: "0",
-      prevSectionDir: "-1",
-      directionPrefix: "",
+      sectionRefs: [],
       expSection: 0,
       coursesSection: 0,
       coursesRow: 0,
       skillsSection: 0,
       projectsSection: 0,
       move: false,
-      moveAnimate: false,
       showIntro: false,
       showImage1: false,
       showImage2: false,
@@ -49,12 +48,21 @@ class Software extends Component {
       skillDescription3: "",
       skillDescription4: "",
       videoPlayerRefs: [],
-      playing: new Array(10).fill(true),
-      videoSliderIndex: ["0", "1", "2", "3"],
-      videoHideControls: ["", "o", "o", "o"],
+      playing: new Array(5).fill(true),
+      videoSliderIndex: ["0", "1", "2"],
+      videoHideControls: ["", "o", "o"],
+      videoSliderInfoHeading: "TAXI RACER",
+      projectsBullet1: "Coded in Java using libraries such as jawa.awt for UIs and java.swing for widgets",
+      projectsBullet2: "Modularity, inheritance, and class abstraction allow for cars to communicate dynamically",
       grayLeft: "g",
       grayRight: "w"
     };
+
+    this.expRef = React.createRef();
+    this.coursesRef = React.createRef();
+    this.skillsRef = React.createRef();
+    this.projectsRef = React.createRef();
+    this.moreRef = React.createRef();
 
     this.progLangRef = React.createRef();
     this.techConceptsRef = React.createRef();
@@ -67,14 +75,15 @@ class Software extends Component {
     this.videoThreeRef = React.createRef();
     this.videoFourRef = React.createRef();
 
-
     this.update = this.update.bind(this);
+    this.setNavigationHover = this.setNavigationHover.bind(this);
     this.incrementCourse = this.incrementCourse.bind(this);
     this.selectSkill = this.selectSkill.bind(this);
     this.setDescription = this.setDescription.bind(this);
     this.scrollToSkill = this.scrollToSkill.bind(this);
     this.stopOtherVids = this.stopOtherVids.bind(this);
     this.setVidPlaying = this.setVidPlaying.bind(this);
+    this.setDownloadHover = this.setDownloadHover.bind(this);
     this.moveVideo = this.moveVideo.bind(this);
   }
 
@@ -117,7 +126,8 @@ class Software extends Component {
       this.setState({load: true});
     }, 1200)
     this.selectSkill("Reset")
-    this.setState({videoPlayerRefs: [this.videoZeroRef, this.videoOneRef, this.videoTwoRef, this.videoThreeRef, this.videoFourRef]})
+    this.setState({videoPlayerRefs: [this.videoZeroRef, this.videoOneRef, this.videoTwoRef, this.videoThreeRef, this.videoFourRef],
+                   sectionRefs: [this.expRef, this.coursesRef, this.skillsRef, this.projectsRef, this.moreRef]})
   }
 
   componentDidUpdate(nextProps) {
@@ -128,7 +138,6 @@ class Software extends Component {
   }
 
   update(scrollLoc, oldLoc) {
-    console.log(this.state.section, this.state.prevSection)
     console.log(scrollLoc)
     if (scrollLoc > 140 && !this.state.scrollUp) {
       this.setState({showImage2: true});
@@ -147,7 +156,7 @@ class Software extends Component {
       this.setState({showBox: false});
       if (this.state.scrollUp) {
         setTimeout(() => {this.props.scrollTo(0);}, 600);
-        setTimeout(() => {this.setState({scrollUp: false, showImages: true, section: "0", prevSection: "-1"});}, 610);
+        setTimeout(() => {this.setState({scrollUp: false, showImages: true, section: "0"});}, 610);
       }
     }
     if (scrollLoc < 1000) {
@@ -190,78 +199,75 @@ class Software extends Component {
     if (scrollLoc > 3600 && scrollLoc < 4600) {
       this.setState({skillsSection: 0, showCourses: true})
     }
-    if (scrollLoc >= 4700 && scrollLoc < 4830) {
+    if (scrollLoc >= 4700 && scrollLoc < 4890) {
       this.setState({skillsSection: 1, showCourses: false})
     }
-    if (scrollLoc >= 4830 && scrollLoc < 5080) {
+    if (scrollLoc >= 4890 && scrollLoc < 5170) {
       this.setState({skillsSection: 2})
     }
-    if (scrollLoc >= 5080 && scrollLoc < 5430) {
+    if (scrollLoc >= 5170 && scrollLoc < 5470) {
       this.setState({skillsSection: 3})
     }
-    if (scrollLoc >= 5430 && scrollLoc < 5580) {
+    if (scrollLoc >= 5470 && scrollLoc < 5580) {
       this.setState({skillsSection: 4})
     }
-    if (scrollLoc > 5800 && scrollLoc < 6300) {
+    if (scrollLoc >= 5800 && scrollLoc < 6300) {
       this.setState({projectsSection: 0, showSkills: true})
       this.stopOtherVids(-1);
     }
-    if (scrollLoc > 6300 && scrollLoc < 6500) {
+    if (scrollLoc >= 6300 && scrollLoc < 6815) {
       this.setState({projectsSection: 1, showSkills: false})
     }
+    if (scrollLoc >= 6815 && scrollLoc < 7795) {
+      this.setState({projectsSection: 2})
+    }
+    if (scrollLoc >= 7795 && scrollLoc < 8770) {
+      this.setState({projectsSection: 3})
+    }
+    if (scrollLoc >= 8770 && scrollLoc < 9770) {
+      this.setState({projectsSection: 4})
+    }
 
-    if (scrollLoc > 1000 && this.state.prevSection == "-1") {
-      this.setState({section: "1", prevSectionDir: this.state.directionPrefix + "0", prevSection: "0", showIntro: true})
+    if (scrollLoc > 1000) {
+      this.setState({showIntro: true})
     } else if (scrollLoc < 1000 && scrollLoc > 800) {
       this.setState({section: "-1"})
     }
-    if (scrollLoc > oldLoc) {
-      this.setState({directionPrefix: "r"})
-    } else {
-      this.setState({directionPrefix: ""})
-    }
     if (this.state.section != "1" && scrollLoc > 1000 && scrollLoc < 3600) {
-      this.setState({moveAnimate: false, showCourses: false})
+      this.setState({showCourses: false})
       setTimeout(() => {
-        this.setState({prevSection: this.state.section, prevSectionDir: this.state.directionPrefix + this.state.section})
-        this.setState({section: "1", move: true, moveAnimate: true})
+        this.setState({section: "1", move: true})
       }, 2);
     }
     if (this.state.section != "2" && scrollLoc > 3600 && scrollLoc < 4350) {
-      this.setState({moveAnimate: false, showSkills: false})
+      this.setState({showSkills: false})
       setTimeout(() => {
-        this.setState({prevSection: this.state.section, prevSectionDir: this.state.directionPrefix + this.state.section})
-        this.setState({section: "2", move: true, moveAnimate: true})
+        this.setState({section: "2", move: true})
       }, 2);
       setTimeout(() => {
         this.setState({showCourses: true})
       }, 500);
     }
     if (this.state.section != "3" && scrollLoc > 4350 && scrollLoc < 5700) {
-      this.setState({moveAnimate: false, showProjects: false})
+      this.setState({showProjects: false})
       setTimeout(() => {
-        this.setState({prevSection: this.state.section, prevSectionDir: this.state.directionPrefix + this.state.section})
-        this.setState({section: "3", move: true, moveAnimate: true})
+        this.setState({section: "3", move: true})
       }, 2);
       setTimeout(() => {
         this.setState({showSkills: true})
       }, 500);
     }
-    if (this.state.section != "4" && scrollLoc > 5700 && scrollLoc < 7000) {
-      this.setState({moveAnimate: false})
+    if (this.state.section != "4" && scrollLoc > 5700 && scrollLoc < 9400) {
       setTimeout(() => {
-        this.setState({prevSection: this.state.section, prevSectionDir: this.state.directionPrefix + this.state.section})
-        this.setState({section: "4", move: true, moveAnimate: true})
+        this.setState({section: "4", move: true})
       }, 2);
       setTimeout(() => {
         this.setState({showProjects: true})
       }, 500);
     }
-    if (this.state.section != "5" && scrollLoc > 7000) {
-      this.setState({moveAnimate: false})
+    if (this.state.section != "5" && scrollLoc > 9400) {
       setTimeout(() => {
-        this.setState({prevSection: "4", prevSectionDir: this.state.directionPrefix + "4"})
-        this.setState({section: "5", move: true, moveAnimate: true})
+        this.setState({section: "5", move: true})
       }, 2);
     }
 
@@ -271,6 +277,14 @@ class Software extends Component {
         this.setState({move: false});
       }
     }, 100);
+  }
+
+  setNavigationHover(index) {
+    let navigationHover = ["", "", "", "", ""]
+    if (index >= 0) {
+      navigationHover[index] = "hover"
+    }
+    this.setState({navigationHover: navigationHover})
   }
 
   incrementCourse(i) {
@@ -362,31 +376,31 @@ class Software extends Component {
         this.setDescription(3, "In a Visual Analytics class at Tufts that focussed on analyzing, filtering, and visualizing data, I gained proficiency using <b>Tableau</b> to parse, filter, and visualize data.")
         break;
       case "Jira":
-        this.setDescription(3, "Jira")
+        this.setDescription(3, "I have experience using <b>Jira</b> at my internship at the New York Times for issue and project tracking and management. In other situations, I have used alternate project managers like Trello.")
         break;
       case "Heroku":
-        this.setDescription(3, "Heroku")
+        this.setDescription(3, "In several classes at Tufts and independently, I have used <b>Heroku</b>, often when using node.js, to host web applications that serve dynamic content from a server to the client. ")
         break;
       case "GitHub":
-        this.setDescription(3, "GitHub")
+        this.setDescription(3, "I have used Git, <b>GitHub</b>, and git clients like Tower extensively in several classes at Tufts, independently, and professionally and have experience with git branching, rebasing, merging, committing, pushing, and pulling.")
         break;
       case "Slack":
-        this.setDescription(3, "Slack")
+        this.setDescription(3, "I have used <b>Slack</b> both professionally during internships and for courses at Tufts, and I have become proficient at using channels and direct messages to communicate relevant information. <b>:+1:</b>")
         break;
       case "leave3":
         this.setDescription(3, "Hover over a skill to learn more.<span style=\"color:gray;\">&#9608;</span>")
         break;
       case "React.js":
-        this.setDescription(4, "React.js")
+        this.setDescription(4, "I have become proficient in <b>React.js</b> through building web applications independently such as this website. Using React.js has also allowed me to practice state-oriented programming to create dynamic and interactive UI’s. To read more about this website, see the projects sections below.")
         break;
       case "node.js":
-        this.setDescription(4, "node.js")
+        this.setDescription(4, "In several classes at Tufts, independently, and professionally, I have used <b>node.js</b> in conjunction with npm to create web applications that communicate with servers or that display dynamic content using libraries like React.js and d3.js.")
         break;
       case "d3.js":
-        this.setDescription(4, "d3.js")
+        this.setDescription(4, "In a Visual Analytics class at Tufts that focusses on analyzing large datasets, I gained proficiency using <b>d3.js</b> to create interactive visualizations that display filtered subsets of relevant data. The class also involved using tools like Tableau to visualize data.")
         break;
       case "CocoaPods":
-        this.setDescription(4, "CocoaPods")
+        this.setDescription(4, "I have gained proficiency using the <b>CocoaPods</b> dependency manager during my internships while integrating several libraries for Swift into code including RxSwift, Alamofire, and FBSDKLoginKit.")
         break;
       case "leave4":
         this.setDescription(4, "Hover over a skill to learn more.<span style=\"color:gray;\">&#9608;</span>")
@@ -463,14 +477,16 @@ class Software extends Component {
     this.setState({playing: playing});
   }
 
+  setDownloadHover(value) {
+    this.setState({downloadHover: value})
+  }
+
   moveVideo(amount) {
     console.log("state", this.state.videoSliderIndex);
     console.log("amount is", amount)
     let videoSliderIndex = this.state.videoSliderIndex.slice();
     let firstElement = videoSliderIndex[0];
-    console.log("first", firstElement)
     let lastElement = videoSliderIndex.[videoSliderIndex.length - 1];
-    console.log("last", lastElement)
     if ((amount == 1 && parseInt(firstElement) < 0) || (amount == -1 && parseInt(lastElement) > 0)) {
       videoSliderIndex = videoSliderIndex.map(x => (parseInt(x) + amount).toString())
       this.setState({videoSliderIndex: videoSliderIndex})
@@ -495,6 +511,19 @@ class Software extends Component {
         this.setState({grayRight: "w"})
       }
     }
+    switch (videoSliderIndex[0]) {
+      case "0":
+        setTimeout(() => {this.setState({projectsBullet1: "Coded in Java using libraries such as jawa.awt for UIs and java.swing for widgets", projectsBullet2: "Modularity, inheritance, and class abstraction allow for cars to communicate dynamically", videoSliderInfoHeading: "TAXI RACER"})}, 100);
+        break;
+      case "-1":
+        setTimeout(() => {this.setState({projectsBullet1: "Coded in Java using libraries such as jawa.awt for UIs and java.swing for widgets", projectsBullet2: "Modularity and class abstraction allow for vehicles to respond to surroundings", videoSliderInfoHeading: "TRAFFIC SIMULATOR"})}, 100);
+        break;
+      case "-2":
+        setTimeout(() => {this.setState({projectsBullet1: "Recreation of the game 2048 coded in C++ and playable in a console", projectsBullet2: "UI features animated tile movements and is created entirely through printing text", videoSliderInfoHeading: "2048"})}, 100);
+        break;
+      default:
+        break;
+    }
   }
 
   render() {
@@ -510,133 +539,22 @@ class Software extends Component {
                 <Experience state={this.state} showBlack={() => {this.setState({showBlack: true}); setTimeout(() => {this.setState({showDescription: true});}, 200);}} hideBlack={() => {this.setState({showDescription: false}); setTimeout(() => {this.setState({showBlack: false});}, 200);}}/>
                 <Courses state={this.state} scrollToSkill={this.scrollToSkill}/>
                 <Skills progLangRef={this.progLangRef} techConceptsRef={this.techConceptsRef} toolsRef={this.toolsRef} librariesRef={this.librariesRef} state={this.state} selectSkill={this.selectSkill}/>
-                <CSSTransition in={this.state.showProjects} timeout={800} classNames={"fade-in"}>
-                  <div className={classNames(this.state.css_code, "projects-content")}>
-                    <div className={classNames(this.state.css_code, "projects-title-box")}>
-                      <div className={classNames(this.state.css_code, "projects-title-box-top")}>
-                        <div className={classNames(this.state.css_code, "projects-title-content")}>
-                          <h1>Seize the Seas</h1>
-                          <h2> - A Multiplayer Game</h2>
-                        </div>
-                      </div>
-                      <div className={classNames(this.state.css_code, "projects-title-box-bottom")}>
-                        <div className={classNames(this.state.css_code, "projects-title-content")}>
-                          <h1>Coded a first-person, 3D multiplayer game in Unity where players defend their island and race to collect trash floating in the sea.</h1>
-                        </div>
-                      </div>
-                    </div>
-                    <div className={classNames(this.state.css_code, "projects-info")}>
-                      <ul>
-                        <li>
-                          Implemented using C# scripts and playable with X-Box controllers
-                        </li>
-                        <li>
-                          Created and coded custom sound effects, custom models, and custom physics engines
-                        </li>
-                      </ul>
-                    </div>
-                    <div>
-                      <ReactPlayer ref={this.videoZeroRef} playing={this.state.playing[0]} onStart={() => {this.stopOtherVids(0)}} onPlay={() => {this.setVidPlaying(0, true)}} className={classNames(this.state.css_code, "projects-video")} url={'videos/seize-the-seas-gameplay.mp4'} width="780" light={seizeThumb} controls={true}/>
-                    </div>
-                    <div onMouseLeave={() => {this.setState({downloadHover: ""})}} className={classNames(this.state.css_code, "projects-video-links")}>
-                      <a onClick={() => this.setVidPlaying(0, false)} href="https://github.com/rohans922/seize-the-seas" rel="noopener noreferrer" target="_blank" onMouseEnter={() => {this.setState({downloadHover: ""})}} className={classNames(this.state.css_code, "projects-video-link")}>
-                        GitHub
-                      </a>
-                      <div onMouseEnter={() => {this.setState({downloadHover: "hover"})}} className={classNames(this.state.css_code, "projects-video-link", "last", this.state.downloadHover)}>
-                        Download
-                      </div>
-                      <div className={classNames(this.state.css_code, "projects-download-links", this.state.downloadHover)}>
-                        <a onClick={() => this.setVidPlaying(0, false)} href="https://drive.google.com/file/d/1E3jKm7mmV4Y9MhLLR-Z_AiJ7L9UGEq4A/view" rel="noopener noreferrer" target="_blank" className={classNames(this.state.css_code, "projects-download-link")}>
-                          Windows
-                        </a>
-                        <a onClick={() => this.setVidPlaying(0, false)} href="https://drive.google.com/file/d/1eOktYFoGQd_UxnJNtd1bIY7p0279TIm0/view" rel="noopener noreferrer" target="_blank" className={classNames(this.state.css_code, "projects-download-link", "last")}>
-                          Mac
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </CSSTransition>
-                <CSSTransition in={this.state.showProjects} timeout={800} classNames={"fade-in"}>
-                  <div className={classNames(this.state.css_code, "projects-content")}>
-                    <div className={classNames(this.state.css_code, "projects-title-box")}>
-                      <div className={classNames(this.state.css_code, "projects-title-box-top")}>
-                        <div className={classNames(this.state.css_code, "projects-title-content")}>
-                          <h1>Simulators and GUIs in Java, JavaScript, and C++</h1>
-                        </div>
-                      </div>
-                      <div className={classNames(this.state.css_code, "projects-title-box-bottom")}>
-                        <div className={classNames(this.state.css_code, "projects-title-content")}>
-                          <h1>To practice principles of object-oriented programming, modularity, and GUI design, I've developed the following simulators and games. Use the arrows to switch between projects.</h1>
-                        </div>
-                      </div>
-                    </div>
-                    <div className={classNames(this.state.css_code, "projects-info")}>
-                      <ul>
-                        <li>
-                          {this.state.projectsBullet1}
-                        </li>
-                        <li>
-                          {this.state.projectsBullet2}
-                        </li>
-                      </ul>
-                    </div>
-                    <div className={classNames(this.state.css_code, "projects-videos-slider")}>
-                      <div className={classNames(this.state.css_code, "projects-video-slider-arrows")}>
-                        <div className={classNames(this.state.css_code, "projects-video-slider-arrow", "l", this.state.grayLeft)} onClick={() => {this.moveVideo(1); this.stopOtherVids(-1);}}>
-                          <i className="fas fa-chevron-left" aria-hidden="true" />
-                        </div>
-                        <div className={classNames(this.state.css_code, "projects-video-slider-arrow", "r", this.state.grayRight)} onClick={() => {this.moveVideo(-1); this.stopOtherVids(-1);}}>
-                          <i className="fas fa-chevron-right" aria-hidden="true" />
-                        </div>
-                      </div>
-                      <div className={classNames(this.state.css_code, "projects-video-container", this.state.videoSliderIndex[0])}>
-                        <div>
-                          <div className={classNames(this.state.css_code, "projects-video-overlay", this.state.videoHideControls[0])}/>
-                          <ReactPlayer ref={this.videoOneRef} playing={this.state.playing[1]} onStart={() => {this.stopOtherVids(1)}} onPlay={() => {this.setVidPlaying(1, true)}} className={classNames(this.state.css_code, "projects-video")} url={'videos/seize-the-seas-gameplay.mp4'} width="780" light={seizeThumb} controls={true}/>
-                        </div>
-                        <div className={classNames(this.state.css_code, "projects-video-links")}>
-                          <a onClick={() => this.setVidPlaying(1, false)} href="https://github.com/rohans922/seize-the-seas" rel="noopener noreferrer" target="_blank" className={classNames(this.state.css_code, "projects-video-link", "wide")}>
-                            GitHub
-                          </a>
-                        </div>
-                      </div>
-                      <div className={classNames(this.state.css_code, "projects-video-container", this.state.videoSliderIndex[1])}>
-                        <div>
-                          <div className={classNames(this.state.css_code, "projects-video-overlay", this.state.videoHideControls[1])}/>
-                          <ReactPlayer ref={this.videoTwoRef} playing={this.state.playing[2]} onStart={() => {this.stopOtherVids(2)}} onPlay={() => {this.setVidPlaying(2, true)}} className={classNames(this.state.css_code, "projects-video")} url={'videos/seize-the-seas-gameplay.mp4'} width="780" light={seizeThumb} controls={true}/>
-                        </div>
-                        <div className={classNames(this.state.css_code, "projects-video-links")}>
-                          <a onClick={() => this.setVidPlaying(2, false)} href="https://github.com/rohans922/seize-the-seas" rel="noopener noreferrer" target="_blank" className={classNames(this.state.css_code, "projects-video-link", "wide")}>
-                            GitHub
-                          </a>
-                        </div>
-                      </div>
-                      <div className={classNames(this.state.css_code, "projects-video-container", this.state.videoSliderIndex[2])}>
-                        <div>
-                          <div className={classNames(this.state.css_code, "projects-video-overlay", this.state.videoHideControls[2])}/>
-                          <ReactPlayer ref={this.videoThreeRef} playing={this.state.playing[3]} onStart={() => {this.stopOtherVids(3)}} onPlay={() => {this.setVidPlaying(3, true)}} className={classNames(this.state.css_code, "projects-video")} url={'videos/seize-the-seas-gameplay.mp4'} width="780" light={seizeThumb} controls={true}/>
-                        </div>
-                        <div className={classNames(this.state.css_code, "projects-video-links")}>
-                          <a onClick={() => this.setVidPlaying(3, false)} href="https://github.com/rohans922/seize-the-seas" rel="noopener noreferrer" target="_blank" className={classNames(this.state.css_code, "projects-video-link", "wide")}>
-                            GitHub
-                          </a>
-                        </div>
-                      </div>
-                      <div className={classNames(this.state.css_code, "projects-video-container", this.state.videoSliderIndex[3])}>
-                        <div>
-                          <div className={classNames(this.state.css_code, "projects-video-overlay", this.state.videoHideControls[3])}/>
-                          <ReactPlayer ref={this.videoFourRef} playing={this.state.playing[4]} onStart={() => {this.stopOtherVids(4)}} onPlay={() => {this.setVidPlaying(4, true)}} className={classNames(this.state.css_code, "projects-video")} url={'videos/seize-the-seas-gameplay.mp4'} width="780" light={seizeThumb} controls={true}/>
-                        </div>
-                        <div className={classNames(this.state.css_code, "projects-video-links")}>
-                          <a onClick={() => this.setVidPlaying(4, false)} href="https://github.com/rohans922/seize-the-seas" rel="noopener noreferrer" target="_blank" className={classNames(this.state.css_code, "projects-video-link", "wide")}>
-                            GitHub
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </CSSTransition>
-                <Navigation state={this.state}/>
+                <Projects videoZeroRef={this.videoZeroRef} videoOneRef={this.videoOneRef} videoTwoRef={this.videoTwoRef} videoThreeRef={this.videoThreeRef} videoFourRef={this.videoFourRef} stopOtherVids={this.stopOtherVids} setVidPlaying={this.setVidPlaying} setDownloadHover={this.setDownloadHover} moveVideo={this.moveVideo} state = {this.state}/>
+                <Navigation state={this.state} setNavigationHover={this.setNavigationHover} sectionRefs={this.state.sectionRefs}/>
+                <div>
+                  <div ref={this.expRef} className={classNames(this.state.css_code, "section-marker", "exp")}/>
+                  <div ref={this.coursesRef} className={classNames(this.state.css_code, "section-marker", "courses")}/>
+                  <div ref={this.skillsRef} className={classNames(this.state.css_code, "section-marker", "skills")}/>
+                  <div ref={this.projectsRef} className={classNames(this.state.css_code, "section-marker", "projects")}/>
+                  <div ref={this.moreRef} className={classNames(this.state.css_code, "section-marker", "more")}/>
+                </div>
+                <h1 className="under-construction"><b>This section is currently under construction.</b><br/>Come back soon!</h1>
+                <div className="footer">
+                  Copyright 2021 • All Rights Reserved • <Link to="/about-this-site" onClick={() => {this.props.selected("About This Site");}}>About This Site</Link> • <Link to="/contact" onClick={() => {this.props.selected("Contact");}}>Contact Me</Link>
+                </div>
+                <div className="footer-compact">
+                  Copyright 2021 • All Rights Reserved
+                </div>
             </div>
           </CSSTransition>
         </div>
