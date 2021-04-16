@@ -1,8 +1,10 @@
 import React from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import classNames from 'classnames'
+import smoothscroll from 'smoothscroll-polyfill';
 
 function Navigation(props) {
+  smoothscroll.polyfill();
   return (
   <CSSTransition in={props.state.section != "0"} timeout={800} classNames={"resize"}>
   <div className={classNames(props.state.css_code, "navigation")}>

@@ -5,6 +5,7 @@ import React from 'react';
 import { Header, Layout, Navigation, Drawer, Content } from 'react-mdl';
 import { Link } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import smoothscroll from 'smoothscroll-polyfill';
 import classNames from 'classnames';
 import Main from './components/main';
 import resume from './assets/Rohan Shaiva Resume.pdf';
@@ -52,6 +53,7 @@ class App extends React.Component {
         console.log("Error")
     }
     this.updateWindowDimensions();
+    smoothscroll.polyfill();
     window.addEventListener('resize', this.updateWindowDimensions);
   }
 
@@ -198,7 +200,7 @@ class App extends React.Component {
               </div>
               </CSSTransition>
             </TransitionGroup>
-          <Content onScroll={this.handleScroll} containerId={"content"}>
+          <Content onScroll={this.handleScroll} containerid={"content"}>
             <div className="top" ref={this.myRef}/>
             <Main scrollTo={this.scrollTo} scrollToTop={this.scrollToTop} scrollLoc={this.state.scrollLoc} selected={this.selected}/>
           </Content>
