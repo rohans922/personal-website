@@ -291,61 +291,6 @@
   opacity: 0;
 }
 
-/* iPhone Image Resize */
-.se.exp-iPhone-rec.resize-enter {
-  transform: scale(1);
-}
-
-.se.exp-iPhone-rec.resize-enter-active {
-  transform: scale(1.1);
-  transition: transform 800ms;
-}
-
-.se.exp-iPhone-rec.resize-enter-done {
-  transform: scale(1.1);
-}
-
-.se.exp-iPhone-rec.resize-exit {
-  transform: scale(1.1);
-}
-
-.se.exp-iPhone-rec.resize-exit-active {
-  transform: scale(1);
-  transition: transform 800ms;
-}
-
-.se.exp-iPhone-rec.resize-exit-done {
-  transform: scale(1);
-}
-
-/* iPhone Big Image Resize */
-.se.exp-iPhone-rec-big.resize-enter {
-  transform: scale(1) translate(-210px, 0px);
-}
-
-.se.exp-iPhone-rec-big.resize-enter-active {
-  transform: scale(1.12) translate(-210px, 0px);
-  transition: transform 800ms;
-}
-
-.se.exp-iPhone-rec-big.resize-enter-done {
-  transform: scale(1.12) translate(-210px, 0px);
-}
-
-.se.exp-iPhone-rec-big.resize-exit {
-  transform: scale(1.12) translate(-210px, 0px);
-}
-
-.se.exp-iPhone-rec-big.resize-exit-active {
-  transform: scale(1) translate(-210px, 0px);
-  transition: transform 800ms;
-}
-
-.se.exp-iPhone-rec-big.resize-exit-done {
-  transform: scale(1) translate(-210px, 0px);
-}
-
-
 /* Experience Box Fade */
 .se.exp-box-content.fade-in-enter {
   display: block;
@@ -1099,6 +1044,12 @@
   border-style: solid;
   border-width: 3px;
   border-color: white;
+  transform: scale(1);
+  transition: all 0.25s ease-in-out 0s;
+}
+
+.se.exp-iPhone-rec:hover {
+  transform: scale(1.05);
 }
 
 .se.exp-iPhone-rec-big {

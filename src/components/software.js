@@ -536,7 +536,7 @@ class Software extends Component {
             classNames={"fade-in"}>
               <div className="page-content">
                 <Intro state={this.state}/>
-                <Experience state={this.state} showBlack={() => {this.setState({showBlack: true}); setTimeout(() => {this.setState({showDescription: true});}, 200);}} hideBlack={() => {this.setState({showDescription: false}); setTimeout(() => {this.setState({showBlack: false});}, 200);}}/>
+                <Experience state={this.state} showDescription={() => {this.setState({showDescription: true});}} hideDescription={() => {this.setState({showDescription: false});}}/>
                 <Courses state={this.state} scrollToSkill={this.scrollToSkill}/>
                 <Skills progLangRef={this.progLangRef} techConceptsRef={this.techConceptsRef} toolsRef={this.toolsRef} librariesRef={this.librariesRef} state={this.state} selectSkill={this.selectSkill}/>
                 <Projects videoZeroRef={this.videoZeroRef} videoOneRef={this.videoOneRef} videoTwoRef={this.videoTwoRef} videoThreeRef={this.videoThreeRef} videoFourRef={this.videoFourRef} stopOtherVids={this.stopOtherVids} setVidPlaying={this.setVidPlaying} setDownloadHover={this.setDownloadHover} moveVideo={this.moveVideo} state = {this.state}/>

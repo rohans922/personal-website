@@ -48,9 +48,7 @@ function Experience(props) {
                   <li className={classNames(props.state.css_code, "exp-large-box-indent")}>features drag and drop mechanics and intuitive animations to create a dynamic user experience</li>
                 </ul>
               </div>
-              <CSSTransition in={props.state.showBlack} timeout={800} classNames={"resize"}>
-                <img src={animatic} className={classNames(props.state.css_code, "exp-iPhone-rec")} onMouseEnter={props.showBlack} onMouseLeave={props.hideBlack}/>
-              </CSSTransition>
+              <img src={animatic} className={classNames(props.state.css_code, "exp-iPhone-rec")} onMouseEnter={props.showDescription} onMouseLeave={props.hideDescription}/>
               <a className={classNames(props.state.css_code, "exp-small-box")} href="https://open.nytimes.com/design-prototype-zoom-how-new-york-times-interns-built-a-game-remotely-8b7bff755983" rel="noopener noreferrer" target="_blank">
                 <h1>NYT Open Article About the Project</h1>
                 <p>written by the interns on the team</p>
