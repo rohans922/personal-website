@@ -142,17 +142,14 @@ class Landing extends Component {
               <a href="https://www.linkedin.com/in/-rohan-shaiva-/" rel="noopener noreferrer" target="_blank">
                 <i className="fab fa-linkedin" aria-hidden="true" />
               </a>
-
               {/* Resume */}
               <a href={resume} target="_blank">
                 <i className="fas fa-file-invoice" aria-hidden="true" />
               </a>
-
               {/* GitHub */}
               <a href="https://github.com/rohans922" rel="noopener noreferrer" target="_blank">
                 <i className="fab fa-github" aria-hidden="true" />
               </a>
-
               {/* YouTube */}
               <a href="https://www.youtube.com/channel/UCGzF2Bp2tzqI0xPmjVAWFdQ" rel="noopener noreferrer" target="_blank">
                 <i className="fab fa-youtube" aria-hidden="true" />

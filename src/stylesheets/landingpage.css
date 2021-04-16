@@ -223,6 +223,7 @@
 }
 
 .lp.banner-text h1 {
+  cursor: default;
   padding-top: 20px;
   margin-bottom: 10px;
   font-size: 46px;
@@ -254,6 +255,11 @@
 .lp.wide-list a {
   color: white;
   text-decoration: none;
+  transition: all 0.25s ease-in-out 0s;
+}
+
+.lp.wide-list a:hover {
+  font-size: 21px;
 }
 
 .lp.mobile-list {
@@ -268,6 +274,11 @@
 .lp.mobile-list a {
   color: white;
   text-decoration: none;
+  transition: all 0.25s ease-in-out 0s;
+}
+
+.lp.mobile-list a:hover {
+  font-size: 21px;
 }
 
 .lp.tufts {
@@ -288,7 +299,17 @@
   padding: 8px;
 }
 
+.lp.social-links a {
+  transform: scale(1);
+  transition: all 0.25s ease-in-out 0s;
+}
+
+.lp.social-links a:hover {
+  transform: scale(1.08);
+}
+
 .lp.scroll-text {
+  cursor: default;
   padding-top: 100px;
   color: white;
   font-size: 24px;
@@ -300,6 +321,7 @@
 }
 
 .lp.intro-sentence-1 {
+  cursor: default;
   display: inline-block;
   width: 67vw;
   transform: translate(0, 400px);
@@ -316,6 +338,7 @@
 }
 
 .lp.intro-sentence-2 {
+  cursor: default;
   display: inline-block;
   width: 60vw;
   transform: translate(0, 100px);
@@ -332,6 +355,7 @@
 }
 
 .lp.boxes {
+  cursor: default;
   position: absolute;
   right: 0;
   left: 0;

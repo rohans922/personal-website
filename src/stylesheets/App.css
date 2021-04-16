@@ -122,6 +122,7 @@ body, .page,  {
 }
 
 .under-construction {
+  cursor: default;
   font-size: 30px !important;
   width: 700px;
   margin-left: auto;
@@ -201,6 +202,7 @@ body, .page,  {
 }
 
 .header-title {
+  cursor: default;
   position: absolute;
   width: 224px;
   top: -10px;
