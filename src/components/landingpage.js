@@ -178,7 +178,7 @@ class Landing extends Component {
           <CSSTransition in={this.state.showSentence2} timeout={1000} classNames={"fade-in"}>
           <div className={classNames(this.state.css_code, "intro-sentence-2", this.state.dismiss)}>
             <p>
-            I aim to use my skills to create scalable solutions and offer innovative ideas that can stretch beyond the workplace and impact the world.“
+            I aim to use my skills to create scalable solutions and offer innovative ideas that can stretch beyond the workplace and impact the world.
             </p>
           </div>
           </CSSTransition>

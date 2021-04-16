@@ -85,7 +85,7 @@ function Experience(props) {
               </div>
               <img src={tipsAndTricks} className={classNames(props.state.css_code, "exp-iPhone-rec-big")}/>
               <div className={classNames(props.state.css_code, "screen-description-2")}>
-                Working prototype of a <b>Tips and Tricks</b> menu that teaches the Crossword. (Implemented in Swift)
+                Working prototype of a <b>Tips and Tricks</b> menu that teaches the Crossword (Implemented in Swift)
               </div>
             </div>
           </CSSTransition>
