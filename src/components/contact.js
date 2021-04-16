@@ -1,7 +1,17 @@
 import React, { Component} from 'react';
+import classNames from 'classnames'
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 class Contact extends Component {
+
+  constructor() {
+      super();
+    this.state = {
+      css_code: "c"
+    };
+  }
+
+
   componentWillUnmount() {
     var curr = window.location.pathname;
     switch(curr) {
@@ -37,7 +47,23 @@ class Contact extends Component {
             appear={true}
             timeout={1000}
             classNames={"fade-in"}>
-              <h1 className="under-construction"><b>This page is currently under construction.</b><br/>Come back soon!</h1>
+              <div>
+                <div className={classNames(this.state.css_code, "social-links")}>
+                  {/* LinkedIn */}
+                  <a href="https://www.linkedin.com/in/-rohan-shaiva-/" rel="noopener noreferrer" target="_blank">
+                    <i className="fab fa-linkedin" aria-hidden="true" />
+                  </a>
+                  {/* Email */}
+                  <a href="mailto:rohan.shaiva@tufts.edu" rel="noopener noreferrer" target="_blank">
+                    <i className="fas fa-envelope" aria-hidden="true" />
+                  </a>
+                  {/* GitHub */}
+                  <a href="https://github.com/rohans922" rel="noopener noreferrer" target="_blank">
+                    <i className="fab fa-github" aria-hidden="true" />
+                  </a>
+                </div>
+                <h1 className="under-construction"><b>This page is currently under construction.</b><br/>Come back soon!</h1>
+              </div>
           </CSSTransition>
         </div>
       </div>

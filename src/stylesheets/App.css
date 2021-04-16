@@ -130,6 +130,20 @@ body, .page,  {
   font-family: 'Poppins', sans-serif;
 }
 
+.c.social-links {
+  font-size: 80px;
+  display: flex;
+  justify-content: space-between;
+  width: 40%;
+  margin: auto;
+  margin-top: 100px;
+  padding-bottom: 20px;
+}
+
+.c.social-links i {
+  color: white;
+}
+
 /* MDL's Content Component Formatting */
 .mdl-layout__content {
   position: absolute !important;

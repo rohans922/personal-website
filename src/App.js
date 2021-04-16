@@ -167,14 +167,18 @@ class App extends React.Component {
                                     'link-bold': this.state.boldText === "Software Engineering",
                                     'link': this.state.boldText !== "Software Engineering"
                                   })} onClick={() => {this.selected("Software Engineering")}} to="/software-engineering">Software Engineering</Link></li>
-                  <li><Link className={classNames({
-                                    'link-bold': this.state.boldText === "Film and Media",
-                                    'link': this.state.boldText !== "Film and Media"
-                                  })} onClick={() => {this.selected("Film and Media")}} to="/film-and-media">Film and Media</Link></li>
-                  <li><Link className={classNames({
-                                    'link-bold': this.state.boldText === "About Me",
-                                    'link': this.state.boldText !== "About Me"
-                                  })} onClick={() => {this.selected("About Me")}} to="/about-me">About Me</Link></li>
+                  {
+                    // <li><Link className={classNames({
+                    //                 'link-bold': this.state.boldText === "Film and Media",
+                    //                 'link': this.state.boldText !== "Film and Media"
+                    //               })} onClick={() => {this.selected("Film and Media")}} to="/film-and-media">Film and Media</Link></li>
+                                }
+                  {
+                  // <li><Link className={classNames({
+                  //                   'link-bold': this.state.boldText === "About Me",
+                  //                   'link': this.state.boldText !== "About Me"
+                  //                 })} onClick={() => {this.selected("About Me")}} to="/about-me">About Me</Link></li>
+                                }
                   <li><Link className={classNames({
                                     'link-bold': this.state.boldText === "Contact",
                                     'link': this.state.boldText !== "Contact"
@@ -191,6 +195,7 @@ class App extends React.Component {
                 <Link className="link-show" to="/contact" onClick={() => {this.hideToggle(); this.selected("Contact");}}>Contact</Link>
                 <a className="link" href="https://www.linkedin.com/in/-rohan-shaiva-/" rel="noopener noreferrer" onClick={() => this.hideToggle()} target="_blank">LinkedIn</a>
                 <a className="link" href={resume} target="_blank" onClick={() => this.hideToggle()}>Resume</a>
+                <a className="link" href="https://github.com/rohans922/" rel="noopener noreferrer" onClick={() => this.hideToggle()} target="_blank">GitHub</a>
                 <Link className="link" to="/about-this-site" onClick={() => {this.hideToggle(); this.selected("About This Site")}}>About This Site</Link>
             </Navigation>
           </Drawer>
