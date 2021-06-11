@@ -27,35 +27,68 @@
 }
 
 /* Intro Image Fades */
-.se.intro-image-1.fade-in-enter, .se.intro-image-2.fade-in-enter, .se.intro-image-3.fade-in-enter, .se.intro-box.fade-in-enter {
+.se.intro-image-1.fade-in-enter, .se.intro-image-2.fade-in-enter, .se.intro-image-3.fade-in-enter {
   opacity: 0;
 }
 
-.se.intro-image-1.fade-in-enter-active, .se.intro-image-2.fade-in-enter-active, .se.intro-image-3.fade-in-enter-active, .se.intro-box.fade-in-enter-active {
+.se.intro-image-1.fade-in-enter-active, .se.intro-image-2.fade-in-enter-active, .se.intro-image-3.fade-in-enter-active {
   opacity: 1;
   transform: translate(0, -50px);
   transition: transform 1000ms, opacity 1000ms;
 }
 
-.se.intro-image-1.fade-in-enter-done, .se.intro-image-2.fade-in-enter-done, .se.intro-image-3.fade-in-enter-done, .se.intro-box.fade-in-enter-done {
+.se.intro-image-1.fade-in-enter-done, .se.intro-image-2.fade-in-enter-done, .se.intro-image-3.fade-in-enter-done {
   opacity: 1;
   transform: translate(0, -50px);
 }
 
-.se.intro-image-1.fade-in-exit, .se.intro-image-2.fade-in-exit, .se.intro-image-3.fade-in-exit, .se.intro-box.fade-in-exit {
+.se.intro-image-1.fade-in-exit, .se.intro-image-2.fade-in-exit, .se.intro-image-3.fade-in-exit {
   opacity: 1;
   transform: translate(0, -50px);
 }
 
-.se.intro-image-1.fade-in-exit-active, .se.intro-image-2.fade-in-exit-active, .se.intro-image-3.fade-in-exit-active, .se.intro-box.fade-in-exit-active {
+.se.intro-image-1.fade-in-exit-active, .se.intro-image-2.fade-in-exit-active, .se.intro-image-3.fade-in-exit-active {
   opacity: 0;
   transform: translate(0, 0px);
   transition: transform 1000ms, opacity 1000ms;
 }
 
-.se.intro-image-1.fade-in-exit-done, .se.intro-image-2.fade-in-exit-done, .se.intro-image-3.fade-in-exit-done, .se.intro-box.fade-in-exit-done {
+.se.intro-image-1.fade-in-exit-done, .se.intro-image-2.fade-in-exit-done, .se.intro-image-3.fade-in-exit-done {
   opacity: 0;
   transform: translate(0, 0px);
+}
+
+
+/* Intro Box Fade */
+.se.intro-box.fade-in-enter {
+  opacity: 0;
+}
+
+.se.intro-box.fade-in-enter-active {
+  opacity: 1;
+  transform: translate(0, -100px);
+  transition: transform 1000ms, opacity 1000ms;
+}
+
+.se.intro-box.fade-in-enter-done {
+  opacity: 1;
+  transform: translate(0, -100px);
+}
+
+.se.intro-box.fade-in-exit {
+  opacity: 1;
+  transform: translate(0, -100px);
+}
+
+.se.intro-box.fade-in-exit-active {
+  opacity: 0;
+  transform: translate(0, -50px);
+  transition: transform 1000ms, opacity 1000ms;
+}
+
+.se.intro-box.fade-in-exit-done {
+  opacity: 0;
+  transform: translate(0, -50px);
 }
 
 /* Nav Arrow Fade */
@@ -801,6 +834,7 @@
 }
 
 .se.intro-box {
+  transform: translate(0px, -50px);
   cursor: default;
   opacity: 0;
   width: 100%;

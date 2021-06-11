@@ -24,7 +24,7 @@ function Intro(props) {
         </CSSTransition>
         <div className={classNames(props.state.css_code, "intro-gap")}></div>
         <CSSTransition in={props.state.showBox} timeout={1000} classNames={"fade-in"}>
-          <div className={classNames(props.state.css_code, "intro-box")}>I’m currently a senior at Tufts University graduating in May 2021 with a B.S. in Computer Science.</div>
+          <div className={classNames(props.state.css_code, "intro-box")}>I recently graduated Tufts University with a B.S. in Computer Science and hope to pursue a career as a software engineer.</div>
         </CSSTransition>
         <div className={classNames(props.state.css_code, "intro-box")}></div>
       </div>

@@ -474,10 +474,10 @@ body, .page,  {
     padding: 8px;
   }
   .se.intro-box {
-    font-size: 3.5vw !important;
+    font-size: 3vw !important;
     line-height: normal;
     height: 12.5vw !important;
-    padding-top: 4.5vw !important;
+    padding-top: 5vw !important;
   }
 }
 

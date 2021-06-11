@@ -149,10 +149,10 @@ class Software extends Component {
     } else if (scrollLoc <= 400) {
       this.setState({showImage3: false});
     }
-    if (scrollLoc > 800 && !this.state.scrollUp) {
+    if (scrollLoc > 600 && !this.state.scrollUp) {
       this.setState({showImages: false, scrollUp: true});
       setTimeout(() => {this.setState({showBox: true, showImage2: false, showImage3: false, section: "-1"});}, 300);
-    } else if (scrollLoc < 800) {
+    } else if (scrollLoc < 600) {
       this.setState({showBox: false});
       if (this.state.scrollUp) {
         setTimeout(() => {this.props.scrollTo(0);}, 600);
@@ -228,7 +228,7 @@ class Software extends Component {
       this.setState({projectsSection: 4})
     }
 
-    if (scrollLoc > 1000) {
+    if (scrollLoc > 1300) {
       this.setState({showIntro: true})
     } else if (scrollLoc < 1000 && scrollLoc > 800) {
       this.setState({section: "-1"})
