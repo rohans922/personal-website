@@ -139,19 +139,19 @@ class Landing extends Component {
             </pre>
             <div className={classNames(this.state.css_code, "social-links")}>
               {/* LinkedIn */}
-              <a href="https://www.linkedin.com/in/-rohan-shaiva-/" rel="noopener noreferrer" target="_blank">
+              <a href="https://www.linkedin.com/in/-rohan-shaiva-/" title="LinkedIn" rel="noopener noreferrer" target="_blank">
                 <i className="fab fa-linkedin" aria-hidden="true" />
               </a>
               {/* Resume */}
-              <a href={resume} target="_blank">
+              <a href={resume} title="Resume" target="_blank">
                 <i className="fas fa-file-invoice" aria-hidden="true" />
               </a>
               {/* GitHub */}
-              <a href="https://github.com/rohans922" rel="noopener noreferrer" target="_blank">
+              <a href="https://github.com/rohans922" title="GitHub" rel="noopener noreferrer" target="_blank">
                 <i className="fab fa-github" aria-hidden="true" />
               </a>
               {/* YouTube */}
-              <a href="https://www.youtube.com/channel/UCGzF2Bp2tzqI0xPmjVAWFdQ" rel="noopener noreferrer" target="_blank">
+              <a href="https://www.youtube.com/channel/UCGzF2Bp2tzqI0xPmjVAWFdQ" title="YouTube" rel="noopener noreferrer" target="_blank">
                 <i className="fab fa-youtube" aria-hidden="true" />
               </a>
             </div>
