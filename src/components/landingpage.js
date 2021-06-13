@@ -131,10 +131,10 @@ class Landing extends Component {
             <hr/>
             <pre>
             <p className={classNames(this.state.css_code, "wide-list")}>
-              <Link to="/software-engineering" onClick={() => {this.props.selected("Software Engineering");}}>Software Engineer</Link>   |    <Link to="/film-and-media" onClick={() => {this.props.selected("Film and Media");}}>Film and Media</Link>   |    <Link to="/about-me" onClick={() => {this.props.selected("About Me");}}>Student at Tufts University</Link>
+              <Link to="/software-engineering" onClick={() => {this.props.selected("Software Engineering");}}>Software Engineer</Link>  |  <a target="_blank" href="https://engineering.tufts.edu/cs/">Tufts University Graduate</a>
             </p>
             <p className={classNames(this.state.css_code, "mobile-list")}>
-               <Link to="/software-engineering" onClick={() => {this.props.selected("Software Engineering");}}>Software Engineer</Link>  |  <Link to="/film-and-media" onClick={() => {this.props.selected("Film and Media");}}>Film and Media</Link><br/><Link className="tufts" to="/about-me" onClick={() => {this.props.selected("About Me");}}>Tufts University</Link>
+               <Link to="/software-engineering" onClick={() => {this.props.selected("Software Engineering");}}>Software Engineer</Link><br/><a className="tufts" target="_blank" href="https://engineering.tufts.edu/cs/">Tufts University Graduate</a>
             </p>
             </pre>
             <div className={classNames(this.state.css_code, "social-links")}>
@@ -233,33 +233,6 @@ class Landing extends Component {
                 <div className={classNames(this.state.css_code, "box-row")}>
                   interdisciplinary Approach
                 </div>
-              </div>
-            </Link>
-            <Link className={classNames(this.state.css_code, "box-link")} to="/film-and-media" onClick={() => {this.props.selected("Film and Media");}}>
-              <div className={classNames(this.state.css_code, "box","r")}>
-                <div className={classNames(this.state.css_code, "box-heading","r")}>
-                  <hr/>
-                </div>
-              <h1>
-                FILM AND MEDIA
-              </h1>
-              <div className={classNames(this.state.css_code, "box-row")}>
-                Multimedia Portfolio
-              </div>
-              <hr className={classNames(this.state.css_code, "box-line")}/>
-              <div className={classNames(this.state.css_code, "box-row")}>
-                <ul>
-                  <li>Film</li>
-                  <li>•</li>
-                  <li>Skills</li>
-                  <li>•</li>
-                  <li>Music</li>
-                </ul>
-              </div>
-              <hr className={classNames(this.state.css_code, "box-line")}/>
-              <div className={classNames(this.state.css_code, "box-row")}>
-                Education and Background
-              </div>
               </div>
             </Link>
           </div>

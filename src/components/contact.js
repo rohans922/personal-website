@@ -52,17 +52,19 @@ class Contact extends Component {
                   {/* LinkedIn */}
                   <a href="https://www.linkedin.com/in/-rohan-shaiva-/" rel="noopener noreferrer" target="_blank">
                     <i className="fab fa-linkedin" aria-hidden="true" />
+                    <p>LinkedIn</p>
                   </a>
                   {/* Email */}
                   <a href="mailto:rohan.shaiva@tufts.edu" rel="noopener noreferrer" target="_blank">
                     <i className="fas fa-envelope" aria-hidden="true" />
+                    <p>Email</p>
                   </a>
                   {/* GitHub */}
                   <a href="https://github.com/rohans922" rel="noopener noreferrer" target="_blank">
                     <i className="fab fa-github" aria-hidden="true" />
+                    <p>GitHub</p>
                   </a>
                 </div>
-                <h1 className="under-construction"><b>This page is currently under construction.</b><br/>Come back soon!</h1>
               </div>
           </CSSTransition>
         </div>

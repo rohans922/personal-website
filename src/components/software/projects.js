@@ -179,14 +179,6 @@ function Projects(props) {
               </div>
             </div>
           </div>
-          <Link className={classNames(props.state.css_code, "projects-website-link")} to="/about-this-site">
-            <div className={classNames(props.state.css_code, "projects-website-box")}>
-              <i class="fas fa-chevron-right"></i>
-              <h1>
-                Click here to learn more about how this website was made
-              </h1>
-            </div>
-          </Link>
         </div>
       </CSSTransition>
     </div>);
